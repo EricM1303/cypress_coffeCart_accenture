@@ -1,12 +1,13 @@
 #utf-8
 # language: pt
 
-Funcionalidade: Cadastro de usuário
+Funcionalidade: Finalizar compra de cafés 
 
-  Cenário: Cadastro com sucesso no Automatize Exercise
-    Dado que estou na página de login do Automatize Exercise
-    Quando eu clico em "Signup / Login"
-    E insiro um nome e um email válido em registrar
-    E preencho os demais dados solicitados
-    Então eu devo visualizar a mensagem de sucesso no registro
-    E clico no botão "continue" para prosseguir à página inicial
+  Cenário: Concluir a compra de cafés selecionados com sucesso
+    Dado que o usuário acessa a página inicial do Coffee Cart
+    Quando seleciona os cafés que deseja comprar
+    E visualiza a promoção de café grátis e a adiciona ao carrinho
+    E clica no ícone do carrinho de compras
+    E exclui um café do seu carrinho
+    Então preenche seu dados para finalizar compra
+    E visualiza a mensagem de compra finalizada com sucesso
