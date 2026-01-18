@@ -7,36 +7,36 @@ const BNT_CONFIRMAR_COMPRA = '#submit-payment'
 const MENSAGEM_COMPRA_FINALIZADA = '.snackbar'
 
 
+
 class FinalizarCompraCarrinho {
     gerarNomeEmailAleatorio() {
         // Gerar dados aleatórios para nome e email
         const nomeAleatorio = `Usuario${Date.now()}`
         const emailAleatorio = `usuario${Date.now()}@teste.com`
+
+        // Armazenar os dados gerados no env
         Cypress.env('nome', nomeAleatorio)
         Cypress.env('email', emailAleatorio)
     }
 
     finalizarCompra() {
         this.gerarNomeEmailAleatorio()
-        cy.get(TOTALIZAR_PEDIDO).click()
-        // Preencher o campo nome com o valor da variável de ambiente
+        cy.get(TOTALIZAR_PEDIDO).should('be.visible').click()
+
+        // Preencher o campo nome e email com o valor da variável de ambiente
         cy.get(CAMPO_NOME).type(Cypress.env('nome'))
-        // Preencher o campo email com o valor da variável de ambiente
         cy.get(CAMPO_EMAIL).type(Cypress.env('email'))
-        // Verifica se está desmarcado
+
+        // Verifica se está desmarcado antes de clicar
         cy.get(ACEITAR_RECEBER_PROMOCOES).should('not.be.checked').click()
         // Clicar no botão para confirmar a compra
-        cy.get(BNT_CONFIRMAR_COMPRA).should('be.visible').click({ force: true })
+        cy.get(BNT_CONFIRMAR_COMPRA).should('be.visible').click()
     }
 
     verificarCompraFinalizada() {
         // Verificar se a mensagem de compra finalizada aparece
         cy.get(MENSAGEM_COMPRA_FINALIZADA).should('be.visible').and('contain.text', 'Thanks for your purchase. Please check your email for payment.')
         cy.log(`Parabéns ${Cypress.env('nome')}, sua compra foi realizada com sucesso e a mensagem foi exibida corretamente.`)
-    }
-
-    finalizarCompraTotal() {
-        this.finalizarCompra()
     }
 }
 
