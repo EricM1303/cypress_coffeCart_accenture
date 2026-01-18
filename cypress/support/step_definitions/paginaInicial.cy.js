@@ -1,4 +1,4 @@
-import { Given, When, And, Then, Before, After } from 'cypress-cucumber-preprocessor/steps'
+import { Given , And } from 'cypress-cucumber-preprocessor/steps'
 import PaginaInicial from '../pages/paginaInicial.page'
 
 // Acessar o site
