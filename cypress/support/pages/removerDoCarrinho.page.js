@@ -15,14 +15,18 @@ class RemoverItemCarrinho {
     }
 
     verificarItemRemovido() {
+        // Verifica se o item foi removido com sucesso do carrinho
         cy.get(BOTAO_EXCLUIR_ITEM).should('not.exist')
         cy.log('Item removido com sucesso do carrinho de compras.')
     }
-    // Verifica se o valor de cada café bate com o esperado e o total também
+
     verificarValores() {
+        // Verifica se o valor de cada café bate com o esperado
         cy.get(CAFE_BRINDE_VALOR).should('contain.text', '$4.00')
         cy.get(CAFE_AMERICANO_VALOR).should('contain.text', '$7.00')
         cy.get(CAFE_BREVE_VALOR).should('contain.text', '$15.00')
+
+        // Verifica se o valor total do pedido está correto após a remoção do item
         cy.get(Cypress.env('BTN_TOTALIZAR_PEDIDO')).should('contain.text', '$26.00')
         cy.log('Os valores dos cafés no carrinho estão corretos após a remoção do item.')
     }
