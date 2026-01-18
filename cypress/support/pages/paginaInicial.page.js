@@ -16,13 +16,14 @@ class EscolherPedidos {
     // Valida se todos elementos promocionais aparecem na tela
     cy.get(MENSAGEM_PROMOCAO).should("contain.text", "It's your lucky day! Get an extra cup of Mocha for $4.")
     cy.get(CAFE_BRINDE).should("be.visible")
-    cy.get(BOTAO_SIM).should('be.visible')
   }
 
   aceitarPromocao() {
-    // Confirma a promoção do café grátis
-    cy.get(BOTAO_SIM).click()
+    this.validarPromocao()
+    // Confirma a promoção do café grátis (se botão for visível)
+    cy.get(BOTAO_SIM).should('be.visible').click()
   }
+
 }
 
 export default new EscolherPedidos()

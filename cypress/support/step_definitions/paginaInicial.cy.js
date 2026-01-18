@@ -6,14 +6,12 @@ Given('que o usuário acessa a página inicial do Coffee Cart', () => {
   cy.visit('/')
 })
 
-// Selecionar cafés
+// Seleciona os cafés que deseja comprar
 And('seleciona os cafés que deseja comprar', () => {
   PaginaInicial.selecionarCafes()
-  PaginaInicial.validarPromocao()
 })
 
-// Validar e adicionar promoção
+// Valida e aceita promoção
 And('visualiza a promoção de café grátis e a adiciona ao carrinho', () => {
-  PaginaInicial.validarPromocao()
   PaginaInicial.aceitarPromocao()
 })
